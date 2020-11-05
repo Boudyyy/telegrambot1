@@ -29,6 +29,25 @@ def links(m):
     ''', parse_mode='Markdown')
 
 
+@bot.message_handler(commands=["events"])
+def links(m):
+    bot.send_message(m.chat.id,
+                     'Ongoing events: ')
+    bot.send_message(m.chat.id,
+                     '[EM Beijing-Haidian 2020 Europe]'
+                     '(https://www.hltv.org'
+                     '/events/5524/'
+                     'iem-beijing-haidian-2020-europe)\n'
+                     '[BLAST Premier Fall 2020 Finals]'
+                     '(https://www.hltv.org/events'
+                     '/5209/blast-premier-fall-2020-finals)',
+                     parse_mode='Markdown')
+    bot.send_photo(m.chat.id,
+                   'http://prntscr.com/ve19id.png')
+    bot.send_photo(m.chat.id,
+                   'http://prntscr.com/ve19vg.png')
+
+
 @bot.message_handler(content_types=['text'])
 def blabla(m):
     if m.text.lower() == 'main menu':
