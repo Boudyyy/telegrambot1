@@ -1,93 +1,436 @@
 import telebot
 from telebot import types
-from config import Bot_Token
 
-bot = telebot.TeleBot(Bot_Token)
+bot = telebot.TeleBot('1441937797:AAH4yb0pEysU9Rm_HBolmP6owKK8aiRFkWM')
 
 
 @bot.message_handler(commands=["start"])
 def start(m):
     msg = bot.send_message(m.chat.id, "Hi! Type or click.")
     keyboard = types.ReplyKeyboardMarkup(True)
-    keyboard.row('Statistics', 'Schedule')
-    keyboard.row('Reshuffle', 'About bot')
+    keyboard.row('World\'s Billionaires', 'Richest Women')
+    keyboard.row('Wealthiest sportsmen', 'About bot')
     bot.send_message(m.chat.id,
-                     'You\'ve got your options!',
+                     'Wanted to see the list of the richest ones?',
                      reply_markup=keyboard)
 
 
-@bot.message_handler(commands=["links"])
-def links(m):
+@bot.message_handler(commands=["source"])
+def source(m):
     msg = bot.send_message(m.chat.id,
-                           "Here are the links that might be useful:")
-    bot.send_message(m.chat.id, '''[HLTV](https://www.hltv.org/team/4608/natus-vincere)
-[Instagram](https://www.instagram.com/natus_vincere_official/)
-[YouTube](https://www.youtube.com/c/navicsgo/featured)
-[Twitter](https://twitter.com/natusvincere?lang=ru)
-[Facebook](https://www.facebook.com/NatusVincere/)
-[NaVi official website](https://navi.gg/en/)
-    ''', parse_mode='Markdown')
-
-
-@bot.message_handler(commands=["events"])
-def links(m):
+                           'Here are the websites we have used:')
     bot.send_message(m.chat.id,
-                     'Ongoing events: ')
-    bot.send_message(m.chat.id,
-                     '[EM Beijing-Haidian 2020 Europe]'
-                     '(https://www.hltv.org'
-                     '/events/5524/'
-                     'iem-beijing-haidian-2020-europe)\n'
-                     '[BLAST Premier Fall 2020 Finals]'
-                     '(https://www.hltv.org/events'
-                     '/5209/blast-premier-fall-2020-finals)',
+                     '[Forbes](https://www.forbes.com)\n'
+                     '[Chempionat](https://www.championat.com/lifestyle/'
+                     'article-4032517-samye-bogatye-'
+                     'sportsmeny-v-istorii-rejting-'
+                     'dzhordan-federer-ronaldu-shumaher.html)\n'
+                     '[Sport.24](https://sport.24tv.ua/ru/'
+                     'top_10_samyh_bogatyh_bokserov_mira_mister'
+                     '_dengi_zolotoj_paren_klichko_i_drugie_n1024218)\n'
+                     '[Спорт-сегодня](https://sport.'
+                     'segodnya.ua/sport/basketball/'
+                     'samye-bogatye-basketbolisty-2018-'
+                     'goda-sostavlen-reyting-1138652.html)',
                      parse_mode='Markdown')
-    bot.send_photo(m.chat.id,
-                   'http://prntscr.com/ve19id.png')
-    bot.send_photo(m.chat.id,
-                   'http://prntscr.com/ve19vg.png')
 
 
 @bot.message_handler(content_types=['text'])
-def blabla(m):
+def mainmen(m):
     if m.text.lower() == 'main menu':
         msg = bot.send_message(m.chat.id,
                                "Alright, what are we going to be up to?")
         keyboard = types.ReplyKeyboardMarkup(True)
-        keyboard.row('Statistics', 'Schedule')
-        keyboard.row('Reshuffle', 'About bot')
+        keyboard.row('World\'s Billionaires', 'Richest Women')
+        keyboard.row('Wealthiest sportsmen', 'About bot')
         bot.send_message(m.chat.id, 'You\'ve got your options!',
                          reply_markup=keyboard)
 
-    elif m.text.lower() == 'reshuffle':
-        bot.send_message(m.chat.id, '''Current Player Roster:
-    🇷🇺  Egor "*flamie*" Vasilev
-    🇺🇦  Oleksandr "*s1mple*" Kostyliev
-    🇷🇺  Denis "*electronic*" Sharipov
-    🇷🇺  Kirill "*Boombl4*" Mikhailov
-    🇷🇺  Ilya "*Perfecto*" Zalutskiy
-    🇺🇦  Andrii "*B1ad3*" Gorodenskyi(coach)
-            ''', parse_mode='Markdown')
-        bot.send_message(m.chat.id, '''
-    Inactive Players                                        Inactive date
-    🇸🇰    Ladislav "*GuardiaN*" Kovács        2020-01-24
-    🇺🇦    Ioann "*Edward*" Sukhariev           2019-05-29
-            ''', parse_mode='Markdown')
+    elif m.text.lower() == 'richest women':
+        keyboard = types.ReplyKeyboardMarkup(True)
+        keyboard.row('Alice Walton', 'Francoise B. Meyers', 'Mackenzie Bezos')
+        keyboard.row('Jacqueline Mars', 'Yang Huiyan', 'Julia Koch')
+        keyboard.row('Susanne Klatten', 'Laurene Powell',
+                     'Zhong Huizuan', 'Gina Rinehart')
+        keyboard.row('Main menu')
         bot.send_message(m.chat.id,
-                         'Former Players\n'
-                         '🇺🇦  Danylo *Zeus* Teslenko\n'
-                         '🇺🇦    Mykhailo *kane* (Coach) Blagin\n'
-                         '🇷🇺    Denis *seized* Kostin\n'
-                         '🇺🇦    Andrey *Andi* (Coach) Prokhor\n'
-                         '🇸🇰    Ladislav *GuardiaN* Kovács\n'
-                         '🇺🇦    Sergey *starix* (Coach) Isch\n'
-                         '🇺🇦    Danylo *Zeus* Teslen\n'
-                         '🇷🇺    Egor *flamie* (Stand-in) Vasilev\n'
-                         '🇺🇦    Sergey *starix* Isch\n'
-                         '🇷🇺    Anton *kibaken* Kolesnik\n'
-                         '🇺🇦    Arseniy *ceh9* Trynozhenko\n'
-                         '🇺🇦    Ioann *Edward* Sukhariev\n'
-                         '🇺🇦    Yegor *markeloff* Markelov',
+                         '1. *Alice Walton* $54.4B\n'
+                         '2. *Francoise Bettencourt Meyers & family* $48.9B\n'
+                         '3. *Julia Koch* $38.2B\n'
+                         '4. *Mackenzie Bezos* $36B\n'
+                         '5. *Jacqueline Mars* $24.7B\n'
+                         '6. *Yang Huiyan* $20.3B\n'
+                         '7. *Susanne Klatten* $16.8B\n'
+                         '8. *Laurene Powell* $16.4B\n'
+                         '9. *Zhong Huizuan* $14.6B\n'
+                         '10. *Gina Rinehart* $13.1B\n'
+                         '_Note: information provided in '
+                         'screenshots (net-worth, age, etc.) '
+                         'may be no more actual, but '
+                         'what is written, is the newest._,',
+                         parse_mode='Markdown', reply_markup=keyboard)
+    elif m.text.lower() == 'alice walton':
+        bot.send_photo(m.chat.id, 'http://prntscr.com/w12jz3.png')
+        bot.send_message(m.chat.id,
+                         'Age *71*\n'
+                         'Source of wealth [Walmart]'
+                         '(https://www.walmart.com) \n'
+                         'Self-made score *1* \n'
+                         'Philantrophy score *2* \n'
+                         'Residence *Fort Worth, Texas* \n'
+                         'Citizenship *USA* \n'
+                         'Education *Bachelor of '
+                         'Arts/Science, Trinity University*',
+                         parse_mode='Markdown')
+    elif m.text.lower() == 'francoise b. meyers':
+        bot.send_photo(m.chat.id, 'http://prntscr.com/w12l17.png')
+        bot.send_message(m.chat.id,
+                         'Age *67*\n'
+                         'Source of wealth '
+                         '[L\'Oreal](https://www.loreal.com/fr/)\n'
+                         'Residence *Paris, France*\n'
+                         'Citizenship *France*',
+                         parse_mode='Markdown')
+    elif m.text.lower() == 'julia koch':
+        bot.send_photo(m.chat.id, 'http://prntscr.com/w12lxh.png')
+        bot.send_message(m.chat.id,
+                         'Age *58*\n'
+                         'Source of wealth [Koch Industries]'
+                         '(https://www.kochind.com)\n'
+                         'Self-made score *1*\n'
+                         'Philantrophy score *2*\n'
+                         'Residence *New York*\n'
+                         'Citizenship *USA*',
+                         parse_mode='Markdown')
+    elif m.text.lower() == 'mackenzie bezos':
+        bot.send_photo(m.chat.id, 'http://prntscr.com/w12mhx.png')
+        bot.send_message(m.chat.id,
+                         'Age *50*\n'
+                         'Source of wealth [Amazon]'
+                         '(https://www.amazon.com)\n'
+                         'Self-made score *3*\n'
+                         'Philantrophy score *2*\n'
+                         'Residence *Seattle, Washington*\n'
+                         'Citizenship *USA*\n'
+                         'Education *Bachelor of Arts/Science, '
+                         'Princeton University*',
+                         parse_mode='Markdown')
+    elif m.text.lower() == 'jacqueline mars':
+        bot.send_photo(m.chat.id, 'http://prntscr.com/w12n3l.png')
+        bot.send_message(m.chat.id,
+                         'Age *81*\n'
+                         'Source of wealth *candy, pet food*\n'
+                         'Self-made score *2*\n'
+                         'Residence *The Plains, Virginia*\n'
+                         'Citizenship *USA*\n'
+                         'Education *Bachelor of Arts/Science, '
+                         'Bryn Mawr College*',
+                         parse_mode='Markdown')
+    elif m.text.lower() == 'yang huiyan':
+        bot.send_photo(m.chat.id, 'http://prntscr.com/w12np2.png')
+        bot.send_message(m.chat.id,
+                         'Age *39* \n'
+                         'Source of wealth *real estate* \n'
+                         'Residence *Foshan, China* \n'
+                         'Citizenship *China* \n'
+                         'Education *Bachelor of Arts/Science, '
+                         'Ohio State University*',
+                         parse_mode='Markdown')
+    elif m.text.lower() == 'susanne klatten':
+        bot.send_photo(m.chat.id, 'http://prntscr.com/w12oct.png')
+        bot.send_message(m.chat.id,
+                         'Age *58*\n'
+                         'Source of wealth [BMW](https://www.'
+                         'bmw.com/de), *pharmaceuticals* \n'
+                         'Residence *Bad Homburg, Germany* \n'
+                         'Citizenship *Germany* \n'
+                         'Education *Master of Business Administration, \n'
+                         'International Institute for '
+                         'Management and Development*',
+                         parse_mode='Markdown')
+    elif m.text.lower() == 'laurene powell':
+        bot.send_photo(m.chat.id, 'http://prntscr.com/w12p5e.png')
+        bot.send_message(m.chat.id,
+                         'Age *57*\n'
+                         'Source of wealth [Apple](https://www.apple.com), '
+                         '[Disney](https://www.disney.com)\n'
+                         'Self-made score *2*\n'
+                         'Philantrophy score *1*\n'
+                         'Residence *Palo Alto, California*\n'
+                         'Citizenship *USA*\n'
+                         'Education *Master of Business Administration, '
+                         'Stanford Graduate School of Business;\n'
+                         'Bachelor of Arts/Science, University of '
+                         'Pennsylvania, The Wharton School*',
+                         parse_mode='Markdown')
+    elif m.text.lower() == 'zhong huizuan':
+        bot.send_photo(m.chat.id, 'http://prntscr.com/w12q2x.png')
+        bot.send_message(m.chat.id,
+                         'Age *59*\n'
+                         'Source of wealth *pharmaceuticals, Self Made*\n'
+                         'Residence *Shanghai, China*\n'
+                         'Citizenship *China*',
+                         parse_mode='Markdown')
+    elif m.text.lower() == 'gina rinehart':
+        bot.send_photo(m.chat.id, 'http://prntscr.com/w12qn0.png')
+        bot.send_message(m.chat.id,
+                         'Age *66*\n'
+                         'Source of wealth *mining*\n'
+                         'Residence *Perth, Australia*\n'
+                         'Citizenship *Australia*',
+                         parse_mode='Markdown')
+
+    elif m.text.lower() == 'world\'s billionaires':
+        keyboard = types.ReplyKeyboardMarkup(True)
+        keyboard.row('Jeff Bezos', 'Sergey Brin', 'Bill Gates')
+        keyboard.row('Mark Zuckerberg', 'Elon Musk',
+                     'Bernard Arnault & family')
+        keyboard.row('Warren Buffet', 'Larry Elisson',
+                     'Larry Page', 'Mukesh Ambani')
+        keyboard.row('Main menu')
+        bot.send_message(m.chat.id,
+                         '1. [Jeff Bezos](https://www.forbes.com/profile/'
+                         'jeff-bezos/?list=rtb/&sh=512e93ce1b23) *$182.2B* \n'
+                         '2. [Bernard Arnault & family]'
+                         '(https://www.forbes.com/'
+                         'profile/bernard-arnault/?list=rtb/&sh=23f26c4e66fa)'
+                         ' *$146.5B* \n'
+                         '3. [Elon Musk](https://www.forbes.com/profile/'
+                         'elon-musk/?list=rtb/&sh=7752702e7999) *$136.9B* \n'
+                         '4. [Bill Gates](https://www.forbes.com/profile/bill-'
+                         'gates/?list=rtb/&sh=50c27be9689f) *$118.8B* \n'
+                         '5. [Mark Zuckergerg](https://www.forbes.com/profile/'
+                         'mark-zuckerberg/?list=rtb/&sh=758286c93e06) '
+                         '*$100.5B* \n'
+                         '6. [Waren Buffet](https://www.forbes.'
+                         'com/profile/warren-buffett'
+                         '/?list=rtb/&sh=791294d04639) *$86.6B* \n'
+                         '7. [Larry Elisson](https://www.forbes.com/profile/'
+                         'larry-ellison/?list=rtb/&sh=3f92999924c2) '
+                         '*$82.4B* \n'
+                         '8. [Larry Page](https://www.forbes.com/profile/'
+                         'larry-page/?list=rtb/&sh=3bf29df57893) *$78.3B* \n'
+                         '9. [Mukesh Ambani](https://www.forbes.com/profile'
+                         '/mukesh-ambani/?list=rtb/&sh=68a34c11214c) '
+                         '*$76.4B* \n'
+                         '10. [Sergei Brin](https://www.forbes.com/profile/'
+                         'sergey-brin/?list=rtb/&sh=582353824b43) *$76.0B*',
+                         parse_mode='Markdown', reply_markup=keyboard)
+        bot.send_message(m.chat.id,
+                         '_Note: Names are clickable, press them to '
+                         'go to the one\'s Forbes profile_',
+                         parse_mode='Markdown')
+    elif m.text.lower() == 'jeff bezos':
+        bot.send_photo(m.chat.id, 'http://prntscr.com/w124x7.png')
+        bot.send_message(m.chat.id,
+                         'Age *56* \n'
+                         'Source of wealth *Amazon, Self made* \n'
+                         'Self-made score, *8* \n'
+                         'Residence *Seattle, Washington* \n'
+                         'Citizenship *USA* \n'
+                         'Education *Bachelor or Arts/Science,'
+                         ' Princeton University*',
+                         parse_mode='Markdown')
+    elif m.text.lower() == 'bernard arnault & family':
+        bot.send_photo(m.chat.id, 'http://prntscr.com/w12799.png')
+        bot.send_message(m.chat.id,
+                         'Age *71* \n'
+                         'Source of wealth *Moët Hennessy — Louis Vuitton* \n'
+                         'Residence *Paris, France* \n'
+                         'Citizenship *France* \n'
+                         'Education *Bachelor or Arts/Science, '
+                         'Ecole Polytechnique de Paris*',
+                         parse_mode='Markdown')
+    elif m.text.lower() == 'elon musk':
+        bot.send_photo(m.chat.id, 'http://prntscr.com/w1288x.png')
+        bot.send_message(m.chat.id,
+                         'Age *49* \n'
+                         'Source of wealth *Tesla, SpaceX, Self Made* \n'
+                         'Self-made score, *8* \n'
+                         'Residence *Austin, Texas* \n'
+                         'Citizenship *USA* \n'
+                         'Education *Bachelor or Arts/Science, '
+                         'University of Pennsylvania*',
+                         parse_mode='Markdown')
+    elif m.text.lower() == 'bill gates':
+        bot.send_photo(m.chat.id, 'http://prntscr.com/w1297f.png')
+        bot.send_message(m.chat.id,
+                         'Age *65* \n'
+                         'Source of wealth *Microsoft, Self made* \n'
+                         'Self-made score, *8* \n'
+                         'Residence *Medina, Washington* \n'
+                         'Citizenship *USA* \n'
+                         'Education *Drop out, '
+                         'Harvard University*',
+                         parse_mode='Markdown')
+    elif m.text.lower() == 'mark zuckerberg':
+        bot.send_photo(m.chat.id, 'http://prntscr.com/w129sn.png')
+        bot.send_message(m.chat.id,
+                         'Age *36* \n'
+                         'Source of wealth *Facebook, Self made* \n'
+                         'Self-made score, *8* \n'
+                         'Residence *Palo Alto, California* \n'
+                         'Citizenship *USA* \n'
+                         'Education *Drop out, Harvard University*',
+                         parse_mode='Markdown')
+    elif m.text.lower() == 'warren buffet':
+        bot.send_photo(m.chat.id, 'http://prntscr.com/w12aet.png')
+        bot.send_message(m.chat.id,
+                         'Age *90* \n'
+                         'Source of wealth *Berkshire Hathaway, Self Made* \n'
+                         'Self-made score, *8* \n'
+                         'Residence *Omaha, Nebraska* \n'
+                         'Citizenship *USA* \n'
+                         'Education *Bachelor of Arts/Science, University \n'
+                         'of Nebraska Lincoln; Master of Science, '
+                         'Columbia University*',
+                         parse_mode='Markdown')
+    elif m.text.lower() == 'larry elisson':
+        bot.send_photo(m.chat.id, 'http://prntscr.com/w12bd4.png')
+        bot.send_message(m.chat.id,
+                         'Age *76* \n'
+                         'Source of wealth *software, Self Made* \n'
+                         'Self-made score, *8* \n'
+                         'Residence *Woodside, California* \n'
+                         'Citizenship *USA* \n'
+                         'Education *Drop Out, University of Chicago; \n'
+                         'Drop Out, University of Illinois, Urbana-Champaign*',
+                         parse_mode='Markdown')
+    elif m.text.lower() == 'larry page':
+        bot.send_photo(m.chat.id, 'http://prntscr.com/w12c4e.png')
+        bot.send_message(m.chat.id,
+                         'Age *47* \n'
+                         'Source of wealth *Google, Self Made* \n'
+                         'Self-made score, *8* \n'
+                         'Residence *Palo Alto, California* \n'
+                         'Citizenship *USA* \n'
+                         'Education *Bachelor of Arts/Science,'
+                         ' University of Michigan; \n'
+                         'Master of Science, Stanford University*',
+                         parse_mode='Markdown')
+    elif m.text.lower() == 'mukesh ambani':
+        bot.send_photo(m.chat.id, 'http://prntscr.com/w12civ.png')
+        bot.send_message(m.chat.id,
+                         'Age *63* \n'
+                         'Source of wealth *diversified* \n'
+                         'Residence *Mumbai, India* \n'
+                         'Citizenship *India* \n'
+                         'Education *Bachelor of Science in '
+                         'Engineering, University of Bombay; \n'
+                         'Drop Out, Stanford University*',
+                         parse_mode='Markdown')
+    elif m.text.lower() == 'sergey brin':
+        bot.send_photo(m.chat.id, 'http://prntscr.com/w12dcz.png')
+        bot.send_message(m.chat.id,
+                         'Age *47* \n'
+                         'Source of wealth *Google, Self Made* \n'
+                         'Self-made score, *9* \n'
+                         'Residence *Los Altos, California* \n'
+                         'Citizenship *USA* \n'
+                         'Education *Master of Science, '
+                         'Stanford University; \n'
+                         'Bachelor of Arts/Science, Unive'
+                         'rsity of Maryland, College Park*',
+                         parse_mode='Markdown')
+
+    elif m.text.lower() == 'wealthiest sportsmen':
+        keyboard = types.ReplyKeyboardMarkup(True)
+        keyboard.row('Tennis')
+        keyboard.row('Box', 'Football')
+        keyboard.row('Basketball', 'Golf')
+        keyboard.row('Main menu')
+        bot.send_message(m.chat.id,
+                         'The 100 highest-paid athletes earned a combined'
+                         ' $3.6 billion this year, which is 9% below 2019.\n'
+                         'Now, choose a kind of sport.',
+                         reply_markup=keyboard)
+    elif m.text.lower() == 'tennis':
+        bot.send_message(m.chat.id,
+                         '1. *Roger Federer* $450M \n'
+                         '2. *Novak Djokovic* $220M \n'
+                         '3. *Serena Williams* $200M \n'
+                         '4. *Rafael Nadal* $180M \n'
+                         '5. *Andy Murray* $165M \n'
+                         '6. *Maria Sharapova* $135$ \n'
+                         '7. *Venus Williams* $95M \n'
+                         '8. *Simona Halep* $30M \n'
+                         '9. *Angelique Kerber* $30M \n'
+                         '10. *Caroline Wozniacki* $30M',
+                         parse_mode='Markdown')
+        bot.send_message(m.chat.id,
+                         'Tennis is definitely the biggest non-team sport, '
+                         'and with over a billion fans in the world today, '
+                         'it is one of the world’s biggest sports. '
+                         'The ranking is primarily based on the '
+                         'net worths of currently active players, '
+                         'or at least players who had '
+                         'not retired before January 2020.',
+                         parse_mode='Markdown')
+    elif m.text.lower() == 'box':
+        bot.send_message(m.chat.id,
+                         '1. *Floyd Mayweather* $450M \n'
+                         '2. *George Foreman* $400M \n'
+                         '3. *Manny Pacquiao* $220M \n'
+                         '4. *Oscar De La Hoya* $200M \n'
+                         '5. *Don King * $150M \n'
+                         '6. *Lennox Lewis* $140M \n'
+                         '7. *Saul Alvarez* $140M \n'
+                         '8. *Sugar Ray Leonard* $120M \n'
+                         '9. *Wladimir Klitschko* $90M \n'
+                         '10. *Anthony Joshua* $80M',
+                         parse_mode='Markdown')
+        bot.send_message(m.chat.id, 'The ranking is primarily based on the '
+                         'net worths of players of all time.',
+                         parse_mode='Markdown')
+    elif m.text.lower() == 'football':
+        bot.send_message(m.chat.id,
+                         '1. *Lionel Messi, Barcelona* $126M \n'
+                         '2. *Cristiano Ronaldo, Juventus* $117M \n'
+                         '3. *Neymar Jr, PSG* $96M \n'
+                         '4. *Kylian Mbappe, PSG* $42M \n'
+                         '5. *Mohammed Salah, Liverpool* $37M \n'
+                         '6. *Paul Pogba, Manchester United* $34M \n'
+                         '7. *Antoine Griezmann, Barcelona* $33M \n'
+                         '8. *Gareth Bale, Tottenham* $29M \n'
+                         '9. *Robert Lewandowski, Bayern M.* $28M \n'
+                         '10. *David de Gea, Manchester United* $27M',
+                         parse_mode='Markdown')
+        bot.send_message(m.chat.id, 'The ranking is primarily based on the'
+                         'players\' salaries paid by their clubs, '
+                         'not including external contra'
+                         'cts and business projects.',
+                         parse_mode='Markdown')
+    elif m.text.lower() == 'golf':
+        bot.send_message(m.chat.id,
+                         '1. *Tiger Woods* $800M \n'
+                         '2. *Arnold Palmer* $700M \n'
+                         '3. *Phil Mickelson* $400M \n'
+                         '4. *Jack Nicklaus* $320M \n'
+                         '5. *Greg Norman* $300M \n'
+                         '6. *Gary Player* $250M \n'
+                         '7. *Rory Mcilroy* $130M \n'
+                         '8. *Fred Couples* $120M \n'
+                         '9. *Jordan Spieth* $100M \n'
+                         '10. *Ernie Els* $85M',
+                         parse_mode='Markdown')
+        bot.send_message(m.chat.id, 'The ranking is primarily based on the '
+                         'net worths of players of all time.',
+                         parse_mode='Markdown')
+    elif m.text.lower() == 'basketball':
+        bot.send_message(m.chat.id,
+                         '1. *Michael Jordan* $1.5B \n'
+                         '2. *Junior Bridgeman* $600M \n'
+                         '3. *Magic Johnson* $600M \n'
+                         '4. *Lebron James* $440M \n'
+                         '5. *Shaquelle O\'Neal* $410M \n'
+                         '6. *Kobe Bryant* $350M \n'
+                         '7. *David Robinson* $200M \n'
+                         '8. *Hakeem Olajuwon* $200M \n'
+                         '9. *Kevin Garnett* $190M \n'
+                         '10. *Grant Hill* $180M',
+                         parse_mode='Markdown')
+        bot.send_message(m.chat.id, 'The ranking is primarily based on the '
+                         'net worths of players.',
                          parse_mode='Markdown')
 
     elif m.text.lower() == 'about bot':
@@ -98,226 +441,13 @@ def blabla(m):
                          'basically it just gives some '
                          'scripted information you ask for, '
                          'but might be useful if you'
-                         ' do not want to open HLTV website.')
-    elif m.text.lower() == 'statistics':
-        keyboard = types.ReplyKeyboardMarkup(True)
-        keyboard.row('s1mple')
-        keyboard.row('flamie', 'Boombl4')
-        keyboard.row('Perfecto', 'electronic')
-        keyboard.row('Main menu')
-        bot.send_message(m.chat.id,
-                         'Choose a player you want to know statistics of',
-                         reply_markup=keyboard)
-    elif m.text.lower() == 's1mple':
-        keyboard = types.ReplyKeyboardMarkup(True)
-        bot.send_photo(m.chat.id, 'http://prntscr.com/v8rc3p.png')
-        bot.send_photo(m.chat.id, 'http://prntscr.com/vblgv7.png')
-        bot.send_message(m.chat.id, '''*s1mple statistics* _Past 3 months_
-    Role                        Main sniper
-    Rating 2.0                  1.27
-    Kills per round             0.86
-    Headshots                   38.8%
-    Maps played                 53
-    Deaths per round            0.64
-    Rounds contributed          72.8%
-*Overall stats*
-    Kills                       28219
-    Deaths                      21418
-    Kill / Death                1.32
-    Kill / Round                0.85
-    Rounds with kills           17936
-    Kill - Death difference     6801
-*Opening stats*
-    Total opening kills         4785
-    Total opening deaths        3074
-    Opening kill ratio          1.56
-    Opening kill rating         1.23
-    First kill in won rounds    20.8 %
-    Round stats 0 kill rounds   15204
-    1 kill rounds               10419
-    2 kill rounds               5263
-    3 kill rounds               1808
-    4 kill rounds               397
-    5 kill rounds               49
-*Weapon stats*
-    Rifle kills                 12044
-    Sniper kills                10120
-    SMG kills                   769
-    Pistol kills                4988
-    Grenade                     140
-    Other                       201''', parse_mode='Markdown')
-        bot.send_photo(m.chat.id, 'http://prntscr.com/vblf4u.png')
-    elif m.text.lower() == 'electronic':
-        keyboard = types.ReplyKeyboardMarkup(True)
-        bot.send_photo(m.chat.id, 'http://prntscr.com/v8rj0g.png')
-        bot.send_photo(m.chat.id, 'http://prntscr.com/vblmfz.png')
-        bot.send_message(m.chat.id, '''*electronic statistics* _Past 3 months_
-    Role                        Rifler, A-site player
-    Rating 2.0                  1.09
-    Kills per round             0.70
-    Headshots                   54.8%
-    Maps played                 53
-    Deaths per round            0.66
-    Rounds contributed          70.7%
-*Overall stats*
-    Kills                       20004
-    Deaths                      17464
-    Kill / Death                1.15
-    Kill / Round                0.76
-    Rounds with kills           13137
-    Kill - Death difference     2540
-*Opening stats*
-    Total opening kills         3072
-    Total opening deaths        2677
-    Opening kill ratio          1.15
-    Opening kill rating         1.08
-    First kill in won rounds    16.3%
-*Round stats*
-    0 kill rounds               13291
-    1 kill rounds               8068
-    2 kill rounds               3586
-    3 kill rounds               1204
-    4 kill rounds               244
-    5 kill rounds               35
-*Weapon stats*
-    Rifle kills                 15015
-    Sniper kills                186
-    SMG kills                   1194
-    Pistol kills                3365
-    Grenade                     226
-    Other                       54''', parse_mode='Markdown')
-        bot.send_photo(m.chat.id, 'http://prntscr.com/vblorr.png')
-    elif m.text.lower() == 'flamie':
-        keyboard = types.ReplyKeyboardMarkup(True)
-        bot.send_photo(m.chat.id, 'http://prntscr.com/v8rkyp.png')
-        bot.send_photo(m.chat.id, 'http://prntscr.com/vbli89.png')
-        bot.send_message(m.chat.id, '''*flamie statistics* _Past 3 months_
-    Role                        Rifler, Lurker
-    Rating 2.0                  0.97
-    Kills per round             0.60
-    Headshots                   55.5%
-    Maps played                 53
-    Deaths per round            0.65
-    Rounds contributed          68.2%
-*Overall stats*
-    Kills                       26809
-    Deaths                      25235
-    Kill / Death                1.06
-    Kill / Round                0.71
-    Rounds with kills           18085
-    Kill - Death difference     1574
-*Opening stats*
-    Total opening kills         3545
-    Total opening deaths        3543
-    Opening kill ratio          1.00
-    Opening kill rating         0.98
-    First kill in won rounds    13.1%
-*Round stats*
-    0 kill rounds               19791
-    1 kill rounds               11524
-    2 kill rounds               4793
-    3 kill rounds               1430
-    4 kill rounds               308
-    5 kill rounds               30
-*Weapon stats*
-    Rifle kills                 19010
-    Sniper kills                1530
-    SMG kills                   1401
-    Pistol kills                4573
-    Grenade                     262
-    Other                       68''', parse_mode='Markdown')
-        bot.send_photo(m.chat.id, 'http://prntscr.com/vblll5.png')
-    elif m.text.lower() == 'perfecto':
-        keyboard = types.ReplyKeyboardMarkup(True)
-        bot.send_photo(m.chat.id, 'http://prntscr.com/v8rn0y.png')
-        bot.send_photo(m.chat.id, 'http://prntscr.com/vblppp.png')
-        bot.send_message(m.chat.id, '''*Perfecto statistics* _Past 3 months_
-    Role                        Rifler, B-site player
-    Rating 2.0                  1.01
-    Kills per round             0.63
-    Headshots                   44.1%
-    Maps played                 53
-    Deaths per round            0.62
-    Rounds contributed          72.6%
-*Overall stats*
-    Kills                       6874
-    Deaths                      6641
-    Kill / Death                1.04
-    Kill / Round                0.64
-    Rounds with kills           4790
-    Kill - Death difference     233
-*Opening stats*
-    Total opening kills         694
-    Total opening deaths        678
-    Opening kill ratio          1.02
-    Opening kill rating         0.88
-    First kill in won rounds    9.1%
-*Round stats*
-    0 kill rounds               5937
-    1 kill rounds               3183
-    2 kill rounds               1208
-    3 kill rounds               328
-    4 kill rounds               64
-    5 kill rounds               7
-*Weapon stats*
-    Rifle kills                 4908
-    Sniper kills                167
-    SMG kills                   545
-    Pistol kills                1163
-    Grenade                     92
-    Other                       23''', parse_mode='Markdown')
-        bot.send_photo(m.chat.id, 'http://prntscr.com/vbls6p.png')
-    elif m.text.lower() == 'boombl4':
-        keyboard = types.ReplyKeyboardMarkup(True)
-        bot.send_photo(m.chat.id, 'http://prntscr.com/v8rp0p.png')
-        bot.send_photo(m.chat.id, 'http://prntscr.com/vblt03.png')
-        bot.send_message(m.chat.id, '''*Boombl4 statistics* _Past 3 months_
-    Role                        Rifler, In-game leader, captain
-    Rating 2.0                  1.00
-    Kills per round             0.63
-    Headshots                   45.1%
-    Maps played                 53
-    Deaths per round            0.69
-    Rounds contributed          68.5%
-*Overall stats*
-    Kills                           14839
-    Deaths                          14649
-    Kill / Death                    1.01
-    Kill / Round                    0.70
-    Rounds with kills               9901
-    Kill - Death difference         190
-*Opening stats*
-    Total opening kills             2584
-    Total opening deaths            2784
-    Opening kill ratio              0.93
-    Opening kill rating             1.06
-    First kill in won rounds        17.1%
-*Round stats*
-    0 kill rounds                   11387
-    1 kill rounds                   6189
-    2 kill rounds                   2684
-    3 kill rounds                   849
-    4 kill rounds                   160
-    5 kill rounds                   19
-*Weapon stats*
-    Rifle kills                     9665
-    Sniper kills                    401
-    SMG kills                       1708
-    Pistol kills                    2733
-    Grenade                         204
-    Other                           158''', parse_mode='Markdown')
-        bot.send_photo(m.chat.id, 'http://prntscr.com/vblvtu.png')
-
-    elif m.text.lower() == 'schedule':
-        keyboard = types.ReplyKeyboardMarkup(True)
-        bot.send_photo(m.chat.id, 'http://prntscr.com/v8r1kt.png')
-        bot.send_message(m.chat.id,
-                         'NaVi🇷🇺 will play against Ninjas In Pyjamas🇸🇪 as'
-                         ' a part of Blast Premiere Fall Series 2020')
+                         ' want to quickly know who is the richest person '
+                         'in the world in different industries.')
 
     else:
         bot.send_message(m.chat.id,
                          'Please, enter something valid '
                          'or use a integrated Telegram keyboard')
+
 
 bot.polling(none_stop=True)
